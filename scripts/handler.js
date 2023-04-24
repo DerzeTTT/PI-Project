@@ -1,4 +1,6 @@
 //Constants
+const backendPort = 3050;
+
 const openLogin = document.querySelector('#open-login');
 const loginBox = document.querySelector('#login-box');
 
@@ -8,15 +10,46 @@ const registerButton = document.querySelector('.register-button');
 const usernameField = document.querySelector('.username');
 const passwordField = document.querySelector('.password');
 
+const user = new Object();
+
+//user.username, user.password
 
 //Variables
 let webData = new Object();
 webData.loginOpen = false;
 
-webData.splitter = 'okwow';
-
-
 //Functions
+user.validateCredentials = () => {
+
+    fetch(`http://localhost:${backendPort}/validate?` + new URLSearchParams({
+
+        username:user.username,
+        password:user.password
+
+    }))
+    .then((resp) => {
+
+        return resp;
+
+    })
+
+};
+
+user.login = () => {
+
+    user.username = 'halo';
+    user.password = 'test';
+
+    console.log(user.validateCredentials())
+
+};
+
+user.register = () => {
+
+
+
+};
+
 const toggleLoginBox = () => {
 
     webData.loginOpen = !webData.loginOpen;
@@ -24,50 +57,6 @@ const toggleLoginBox = () => {
     const styleStr = webData.loginOpen ? 'flex' : 'none';
 
     loginBox.style.display = styleStr;
-
-};
-
-const getCredentials = () => {
-
-    const [username, password] = [usernameField.value, passwordField.value];
-
-    if (username === '' || password === ''){
-
-        alert('Username/Password can\'t be empty!');  
-        return;
-
-    };
-
-    toggleLoginBox();
-
-    usernameField.value = '';
-    passwordField.value = '';
-
-    return [username, password];
-
-};
-
-const loginUser = (credentials) => {
-
-    if (!credentials){return};
-
-    const [username, password] = credentials;
-
-    loginToken = `${btoa(username)}${webData.splitter}${btoa(password)}`;
-    document.cookie = `loginSession=${loginToken}`;
-
-    webData.username = username;
-    webData.password = password;
-
-};
-
-const registerUser = (credentials) => {
-
-    if (!credentials){return};
-
-    const [username, password] = credentials;
-
-    
 
 };
 
@@ -109,4 +98,5 @@ registerButton.addEventListener('click', () => registerUser(getCredentials()));
 //Misc
 loginBox.style.display = 'none';
 
-digestCookie();
+// digestCookie();
+user.login();
