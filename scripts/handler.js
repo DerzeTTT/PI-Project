@@ -2,7 +2,8 @@
 const openLogin = document.querySelector('#open-login');
 const loginBox = document.querySelector('#login-box');
 
-const loginButton = document.querySelector('#login-button')
+const loginButton = document.querySelector('.login-button');
+const registerButton = document.querySelector('.register-button');
 
 const usernameField = document.querySelector('.username');
 const passwordField = document.querySelector('.password');
@@ -46,15 +47,27 @@ const getCredentials = () => {
 
 };
 
-const loginUser = (reloadCallback) => {
+const loginUser = (credentials) => {
 
-    const [username, password] = getCredentials();
+    if (!credentials){return};
+
+    const [username, password] = credentials;
 
     loginToken = `${btoa(username)}${webData.splitter}${btoa(password)}`;
     document.cookie = `loginSession=${loginToken}`;
 
     webData.username = username;
     webData.password = password;
+
+};
+
+const registerUser = (credentials) => {
+
+    if (!credentials){return};
+
+    const [username, password] = credentials;
+
+    
 
 };
 
@@ -89,8 +102,9 @@ const submitFile = () => {
 
 //Events
 openLogin.addEventListener('click', toggleLoginBox);
-loginButton.addEventListener('click', () => {loginUser(); location.reload()});
 
+loginButton.addEventListener('click', () => {loginUser(getCredentials()); location.reload()});
+registerButton.addEventListener('click', () => registerUser(getCredentials()));
 
 //Misc
 loginBox.style.display = 'none';

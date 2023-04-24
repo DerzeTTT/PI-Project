@@ -213,7 +213,16 @@ body {
 
 }
 
-#login-button {
+.login-buttons {
+
+    display: flex;
+
+    flex-direction: row;
+    gap: 25px;
+
+}
+
+.account-btn {
 
     width: 100px;
     height: 30px;
@@ -232,7 +241,7 @@ body {
     
 }
 
-#login-button span {
+.account-btn span {
 
     font-family: 'Mukta', sans-serif;
     font-size: 20px;
@@ -241,7 +250,7 @@ body {
 
 }
 
-#login-button:hover {
+.account-btn:hover {
 
     cursor: pointer;
 
