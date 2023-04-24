@@ -11,12 +11,50 @@
 
 </head>
 <body>
+
+    <div id="bg-image"></div>
     
     <main id="file-managing">
 
+        <span class="title">File Hosting</span>
+        <hr class="separator">
 
-        
+        <button class="retrieve">Retrieve all files</button>
+
+        <form action="/action_page.php" class="upload-form">
+            <input type="file" id="myFile" name="filename" class="browse-file">
+            <input type="submit" class="submit-file">
+        </form>
+
     </main>
+
+    <div id="open-login">
+
+        <img src="./images/login/user-icon.svg" alt="">
+
+    </div>
+
+    <div id="login-box">
+
+        <div class="input-field">
+
+            <span class="input-title">Username:</span>
+            <input type="text" class="input-text username" placeholder="Enter Username">
+
+        </div>
+
+        <div class="input-field">
+
+            <span class="input-title">Password:</span>
+            <input type="password" class="input-text password" placeholder="Enter Password">
+
+        </div>
+
+        <div id="login-button">
+            <span>Login</span>
+        </div>
+
+    </div>
 
 </body>
 
