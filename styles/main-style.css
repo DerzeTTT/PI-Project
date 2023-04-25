@@ -220,6 +220,8 @@ body {
     flex-direction: row;
     gap: 25px;
 
+    margin-top: 5%;
+
 }
 
 .account-btn {
@@ -253,5 +255,18 @@ body {
 .account-btn:hover {
 
     cursor: pointer;
+
+}
+
+.incorrect {
+
+    color: red;
+    font-size: 11px;
+
+    display: flex;
+
+    position: absolute;
+
+    margin-top: 33%;
 
 }

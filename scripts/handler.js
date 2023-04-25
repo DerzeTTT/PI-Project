@@ -10,93 +10,63 @@ const registerButton = document.querySelector('.register-button');
 const usernameField = document.querySelector('.username');
 const passwordField = document.querySelector('.password');
 
+const incorrectInfo = document.querySelector('.incorrect');
+
+//Objects
 const user = new Object();
+const design = new Object();
 
-//user.username, user.password
-
-//Variables
-let webData = new Object();
-webData.loginOpen = false;
+design.loginDisplayed = false;
 
 //Functions
-user.validateCredentials = () => {
+design.toggleLogin = function(){
 
-    fetch(`http://localhost:${backendPort}/validate?` + new URLSearchParams({
-
-        username:user.username,
-        password:user.password
-
-    }))
-    .then((resp) => {
-
-        return resp;
-
-    })
+    design.loginDisplayed = !design.loginDisplayed;
+    loginBox.style.display = design.loginDisplayed ? 'flex' : 'none';
 
 };
 
-user.login = () => {
+user.readData = function(){
 
-    user.username = 'halo';
-    user.password = 'test';
+    user.username = usernameField.value;
+    user.password = passwordField.value;
 
-    console.log(user.validateCredentials())
+    console.log(usernameField.value)
 
-};
+    if(user.username === '' || user.password === ''){
 
-user.register = () => {
+        incorrectInfo.style.display = 'flex';
+        incorrectInfo.innerText = "*Username and password can't be empty!";
 
+        return false;
 
+    };
 
-};
-
-const toggleLoginBox = () => {
-
-    webData.loginOpen = !webData.loginOpen;
-
-    const styleStr = webData.loginOpen ? 'flex' : 'none';
-
-    loginBox.style.display = styleStr;
+    return true;
 
 };
 
-const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-}
+user.register = function(){
 
-const digestCookie = () => {
-
-    loginSess = getCookie('loginSession');
-    if (!loginSess){return};
-
-    splitted = loginSess.split(webData.splitter);
-
-    const [username, password] = [atob(splitted[0]), atob(splitted[1])];
-
-    webData.username = username;
-    webData.password = password;
-
-    console.log(username, password);
-
-};
-
-const submitFile = () => {
+    validatedFields = user.readData();
+    if(!validatedFields){return};
 
     
 
 };
 
+user.login = function(){
+
+
+
+};
 
 //Events
-openLogin.addEventListener('click', toggleLoginBox);
+openLogin.addEventListener('click', design.toggleLogin);
 
-loginButton.addEventListener('click', () => {loginUser(getCredentials()); location.reload()});
-registerButton.addEventListener('click', () => registerUser(getCredentials()));
+registerButton.addEventListener('click', user.register);
+loginButton.addEventListener('click', user.login);
 
 //Misc
 loginBox.style.display = 'none';
-
-// digestCookie();
-user.login();
+incorrectInfo.style.display = 'none';
