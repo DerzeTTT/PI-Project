@@ -229,7 +229,7 @@ body {
     width: 100px;
     height: 30px;
 
-    border-radius: 10px;
+    border-radius: 3px;
 
     display: flex;
 
@@ -238,8 +238,8 @@ body {
     justify-content: center;
     align-items: center;
 
-    background-color: rgb(0, 0, 0);
-    box-shadow: 0 0 4px black;
+    background-color: rgb(61, 61, 61);
+    box-shadow: 3px 3px 2px black;
     
 }
 

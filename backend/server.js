@@ -109,6 +109,8 @@ apiMethods.POST['register'] = async (req, res, params) => {
     const newCredentials = new credentials(username, password);
     const registerStatus = await newCredentials.register() !== null ? '1' : '0';
 
+    console.log(registerStatus);
+
     res.end(registerStatus);
 
 };
@@ -116,6 +118,7 @@ apiMethods.POST['register'] = async (req, res, params) => {
 const requestListener = (req, res) => {
 
     res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     const {pathname, query} = url.parse(req.url);
 
@@ -145,32 +148,3 @@ server.listen(serverPort, 'localhost', () => {
     console.log(`Listening on localhost:${serverPort}`);
 
 });
-
-
-// app.use(cors({
-//     origin: '*'
-// }));
-
-// app.get('/validate', async (req, resp) => {
-
-//     const username = req.query.username;
-//     const password = req.query.password;
-
-//     const newCredentials = new credentials(username, password);
-
-//     const returned = await newCredentials.validate();
-
-//     resp.header('Access-Control-Allow-Origin', `http://localhost:${serverPort}`);
-//     resp.header('birdhass', 'okey');
-
-//     resp.send(returned);
-
-// });
-
-// app.listen(serverPort, () => {
-
-//     console.log('Listening');
-
-// });
-
-// queryDB("SELECT * FROM Users Where Usernm = 'Test'").then((recordSet) => console.log(recordSet))

@@ -1,5 +1,6 @@
 //Constants
-const backendPort = 3050;
+const backendPort = 55405;
+const backendServer = `http://localhost:${backendPort}`;
 
 const openLogin = document.querySelector('#open-login');
 const loginBox = document.querySelector('#login-box');
@@ -26,6 +27,13 @@ design.toggleLogin = function(){
 
 };
 
+design.displayIncorrect = function(msg){
+
+    incorrectInfo.style.display = 'flex';
+    incorrectInfo.innerText = '*'+msg;
+
+};
+
 user.readData = function(){
 
     user.username = usernameField.value;
@@ -35,8 +43,7 @@ user.readData = function(){
 
     if(user.username === '' || user.password === ''){
 
-        incorrectInfo.style.display = 'flex';
-        incorrectInfo.innerText = "*Username and password can't be empty!";
+        design.displayIncorrect("Username and password can't be empty!");
 
         return false;
 
@@ -46,12 +53,42 @@ user.readData = function(){
 
 };
 
-user.register = function(){
+const sendRequest = async function(sendingUrl, method){
 
-    validatedFields = user.readData();
+    const response = await fetch(`${backendServer}/${sendingUrl}`, {
+
+        method: method,
+
+    });
+
+    return await response.json();
+
+};
+
+user.register = async function(){
+
+    const validatedFields = user.readData();
     if(!validatedFields){return};
 
-    
+    const takenUsername = await sendRequest(`validateUsername?username=${user.username}`, 'GET');
+    if(takenUsername===1){
+
+        design.displayIncorrect("Username already taken");
+        return;
+
+    };
+
+    const registerStatus = await sendRequest(`register?username=${user.username}&password=${user.password}`, 'POST');
+
+    if (registerStatus===1){
+
+        alert(`Successfully created account ${user.username}`);
+
+    } else {
+
+        design.displayIncorrect("Error while creating account");
+
+    };
 
 };
 
