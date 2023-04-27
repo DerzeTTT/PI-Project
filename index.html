@@ -21,9 +21,9 @@
 
         <button class="retrieve">Retrieve all files</button>
 
-        <form action="/action_page.php" class="upload-form">
-            <input type="file" id="myFile" name="filename" class="browse-file">
-            <input type="submit" class="submit-file">
+        <form action="http://localhost:55405/upload" method="post" enctype="multipart/form-data" class="upload-form">
+            <input type="file" id="browsing-file" name="filename" class="browse-file">
+            <input type="submit" value="Send File" class="submit-file">
         </form>
 
     </main>
@@ -35,6 +35,13 @@
     </div>
 
     <div id="login-box">
+
+        <div class="already-logged">
+
+            <span>Logged in on: Test123</span>
+            <div class="log-out account-btn">Log Out</div>
+
+        </div>
 
         <div class="input-field">
 

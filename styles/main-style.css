@@ -176,6 +176,8 @@ body {
     
     box-shadow: 3px 3px 5px black;
 
+    overflow: hidden;
+
 }
 
 .input-field {
@@ -268,5 +270,31 @@ body {
     position: absolute;
 
     margin-top: 33%;
+
+}
+
+.already-logged {
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 3;
+
+    position: absolute;
+
+    background-color: white;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+}
+
+.already-logged span {
+
+    margin-bottom: 18px;
 
 }
