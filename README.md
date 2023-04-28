@@ -13,4 +13,5 @@ Aby zkonfigurowac baze trzeba stworzyc login I baze danych z tabela users:
 
 Dodatkowo trzeba wlaczyc TCP/IP w Server Configuration Manager w Protocols for MSSQLSERVER I zrestartowac SQL Server
 
-Film bedzie dodany pozniej
+https://user-images.githubusercontent.com/38564969/234966317-f232a0c3-d758-4e0e-923b-c222cdb4081a.mp4
+
